@@ -2,10 +2,11 @@
 //  ItemDetailPageViewController.swift
 //  onlineShop
 //
-//  Created by Madiyar Zhenis on 05.06.2024.
+//  Created by Takhmina Zhenis on 05.06.2024.
 //
 
 import UIKit
+import SnapKit
 
 final class ItemDetailPageViewController: UIViewController {
     
@@ -24,38 +25,43 @@ final class ItemDetailPageViewController: UIViewController {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Manrope", size: 25)
-        label.font = .systemFont(ofSize: 22)
+        label.font = UIFont(name: "Manrope-Bold", size: 25)
         label.textAlignment = .center
+        label.textColor = .darkGray
         return label
     }()
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.borderWidth = 1
-        imageView.layer.borderColor = UIColor.red.cgColor
+        imageView.layer.borderColor = UIColor.lightGray.cgColor
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 15
+        imageView.layer.shadowColor = UIColor.black.cgColor
+        imageView.layer.shadowOpacity = 0.2
+        imageView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        imageView.layer.shadowRadius = 4
         return imageView
     }()
     
     private let priceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Manrope", size: 25)
-        label.font = .systemFont(ofSize: 22)
+        label.font = UIFont(name: "Manrope-SemiBold", size: 20)
+        label.textColor = .systemGreen
         label.textAlignment = .left
         return label
     }()
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Manrope", size: 25)
-        label.font = .systemFont(ofSize: 22)
+        label.font = UIFont(name: "Manrope-Regular", size: 18)
+        label.textColor = .gray
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
     }()
+    
     
     private let buyNowButton: UIButton = {
         let button = UIButton(type: .system)
@@ -64,6 +70,7 @@ final class ItemDetailPageViewController: UIViewController {
         button.backgroundColor = .systemBlue
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(buyNowButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -139,6 +146,11 @@ final class ItemDetailPageViewController: UIViewController {
         CartManager.shared.addToCart(item: item)
         let viewController = CartViewController()
         navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc private func buyNowButtonTapped() {
+        let vc = AddCardViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }

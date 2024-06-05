@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  onlineShop
 //
-//  Created by Madiyar Zhenis on 05.06.2024.
+//  Created by Takhmina Zhenis on 05.06.2024.
 //
 
 import UIKit
